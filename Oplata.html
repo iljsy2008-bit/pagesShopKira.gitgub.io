@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата - ShopKir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Header - ТОЧНО КАК НА ГЛАВНОЙ */
+        header {
+            background-color: #fff;
+            border-bottom: 3px solid #FF8C42;
+            padding: 20px 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .logo-torii {
+            font-size: 36px;
+        }
+
+        .logo-text {
+            color: #000;
+        }
+
+        .logo-text span {
+            color: #FF8C42;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FF8C42;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #FF8C42;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 350px;
+            margin: 0 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px;
+            border: 2px solid #FFDAB9;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        .search-box input:focus {
+            border-color: #FF8C42;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .cart-icon {
+            font-size: 28px;
+        }
+
+        .cart-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .cart-text {
+            font-size: 11px;
+            color: #FF8C42;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .category-menu {
+            list-style: none;
+        }
+
+        .category-menu li {
+            margin-bottom: 20px;
+        }
+
+        .category-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .category-menu a:hover,
+        .category-menu a.active {
+            color: #FF8C42;
+        }
+
+        /* Payment Content */
+        .payment-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .payment-hero {
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE5D0 100%);
+            padding: 60px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            text-align: center;
+            border: 2px solid #FFDAB9;
+        }
+
+        .payment-hero h1 {
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .payment-hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .payment-methods {
+            margin-bottom: 50px;
+        }
+
+        .payment-methods h2 {
+            font-size: 32px;
+            color: #000;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .method-card {
+            background: #FFF5F0;
+            border: 2px solid #FFDAB9;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+
+        .method-card:hover {
+            border-color: #FF8C42;
+            box-shadow: 0 5px 20px rgba(255, 140, 66, 0.1);
+        }
+
+        .method-card h3 {
+            font-size: 24px;
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .method-icon {
+            font-size: 32px;
+        }
+
+        .method-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .method-card ul {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .method-card ul li {
+            color: #666;
+            margin-bottom: 8px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .method-card ul li::before {
+            content: '✓';
+            color: #FF8C42;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .info-box {
+            background: #000;
+            color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border: 2px solid #FF8C42;
+        }
+
+        .info-box h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #FFDAB9;
+        }
+
+        .info-box p {
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .security-badges {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .badge {
+            background: #FFF5F0;
+            border: 2px solid #FFDAB9;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .badge-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .badge p {
+            font-weight: 600;
+            color: #000;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 2px solid #FF8C42;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #999;
+        }
+        .header-container .cart img{
+            width: 23px;
+        }
+        header .cart-info .korz{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - ТОЧНО КАК НА ГЛАВНОЙ -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-torii">⛩️</span>
+                <span class="logo-text">SHOP<span>KIR</span></span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">КАТАЛОГ</a></li>
+                    <li><a href="O nas.html">О НАС</a></li>
+                    <li><a href="Oplata.html" class="active">ОПЛАТА</a></li>
+                    <li><a href="Kontakt.html">КОНТАКТЫ</a></li>
+                </ul>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск по каталогу">
+                </div>
+                
+                <div class="cart">
+                    <span class="cart-icon">🛒</span>
+                    <div class="cart-info">
+                        <span class="cart-total">0Р</span>
+                        <a class ='korz' href="korzina.html"><span class="cart-text">ОФОРМИТЬ ЗАКАЗ</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+        </aside>
+
+        <!-- Payment Content -->
+        <main class="payment-content">
+            <div class="payment-hero">
+                <h1>СПОСОБЫ ОПЛАТЫ</h1>
+                <p>Выберите удобный способ оплаты вашего заказа. Мы гарантируем безопасность всех транзакций</p>
+            </div>
+
+            <div class="payment-methods">
+                <h2>ВЫБЕРИТЕ СПОСОБ ОПЛАТЫ</h2>
+                
+                <div class="method-card">
+                    <h3><span class="method-icon">💳</span>БАНКОВСКИЕ КАРТЫ</h3>
+                    <p>Принимаем все основные платежные системы:</p>
+                    <ul>
+                        <li>Visa, MasterCard, МИР</li>
+                        <li>Моментальное подтверждение платежа</li>
+                        <li>Безопасная оплата через защищенное соединение</li>
+                        <li>Комиссия: 0%</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h3><span class="method-icon">📱</span>ЭЛЕКТРОННЫЕ КОШЕЛЬКИ</h3>
+                    <p>Оплата через популярные платежные системы:</p>
+                    <ul>
+                        <li>ЮMoney (Яндекс.Деньги)</li>
+                        <li>WebMoney</li>
+                        <li>QIWI Кошелек</li>
+                        <li>PayPal</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h3><span class="method-icon">🏦</span>БАНКОВСКИЙ ПЕРЕВОД</h3>
+                    <p>Оплата по реквизитам:</p>
+                    <ul>
+                        <li>Для физических и юридических лиц</li>
+                        <li>Счет выставляется в течение 24 часов</li>
+                        <li>Срок зачисления: 1-3 рабочих дня</li>
+                        <li>Комиссия зависит от вашего банка</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h3><span class="method-icon">💵</span>НАЛИЧНЫМИ ПРИ ПОЛУЧЕНИИ</h3>
+                    <p>Оплата курьеру или в пункте выдачи:</p>
+                    <ul>
+                        <li>Только для Москвы и Санкт-Петербурга</li>
+                        <li>При доставке курьером</li>
+                        <li>В пунктах выдачи заказов</li>
+                        <li>Комиссия: 0%</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h3><span class="method-icon">📲</span>СБП (СИСТЕМА БЫСТРЫХ ПЛАТЕЖЕЙ)</h3>
+                    <p>Мгновенная оплата по QR-коду:</p>
+                    <ul>
+                        <li>Оплата через приложение вашего банка</li>
+                        <li>Мгновенное подтверждение</li>
+                        <li>Без комиссии</li>
+                        <li>Поддерживают: Сбербанк, Тинькофф, ВТБ и другие</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h2>🔒 БЕЗОПАСНОСТЬ ОПЛАТЫ</h2>
+                <p>Все платежи обрабатываются через защищенное SSL-соединение. Мы не храним данные ваших банковских карт на наших серверах.</p>
+                <p>При оплате вы будете перенаправлены на защищенную страницу платежной системы.</p>
+            </div>
+
+            <div class="security-badges">
+                <div class="badge">
+                    <div class="badge-icon">🔐</div>
+                    <p>SSL ЗАЩИТА</p>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✅</div>
+                    <p>ПРОВЕРЕНО</p>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">🛡️</div>
+                    <p>ГАРАНТИЯ</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ShopKir. Все права защищены. ⛩️</p>
+    </footer>
+<script>
+    function addToCart(name, price, category, image) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Проверяем есть ли уже такой товар
+        let existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                category: category,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Показываем уведомление
+        showNotification('✅ Товар добавлен в корзину!');
+        
+        // Обновляем счётчик в шапке
+        updateCartCount();
+    }
+
+    function showNotification(text) {
+        let notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-left: 5px solid #FF8C42;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = text;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        let cartTotal = document.querySelector('.cart-total');
+        if (cartTotal) {
+            cartTotal.textContent = total.toLocaleString() + 'Р';
+        }
+    }
+
+    // Обновляем при загрузке
+    updateCartCount();
+</script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKir - Каталог</title>
+  <link rel="stylesheet" type="text/css" href="test1.css"/>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span>⛩️</span>
+                <span class="logo-text">SHOP<span>KIR</span></span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="OsnovSit.html" class="active">КАТАЛОГ</a></li>
+                    <li><a href="O nas.html">О НАС</a></li>
+                    <li><a href="Oplata.html">ОПЛАТА</a></li>
+                    <li><a href="Kontakt.html">КОНТАКТЫ</a></li>
+                </ul>
+                
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск по каталогу" onkeyup="searchProducts()">
+                </div>
+                
+                <div class="cart">
+                    <span class="cart-icon">🛒</span>
+                    <div class="cart-info">
+                        <span class="cart-total">0Р</span>
+                        <a class ='korz' href="korzina.html"><span class="cart-text">ОФОРМИТЬ ЗАКАЗ</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+
+        <!-- Products -->
+        <section class="products-section">
+            <div class="sort-bar">
+                <span>СОРТИРОВАТЬ ПО:</span>
+                <a href="#">ЦЕНА</a>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1: Худи черное -->
+                <div class="product-card" data-name="худи черное волна фукусава япония 2959 hoodie">
+                    <div class="product-category">ХУДИ</div>
+                    <img src="177373191211e7.png" alt="Худи" class="product-image">
+                    <div class="product-price">2959 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        100% ХЛОПОК<br>
+                        СВОБОДНЫЙ КРОЙ,<br>
+                        ОВЕРСАЙЗ,
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('худи черное волна фукусава япония', 2959, 'ХУДИ', '/images/177373191211e7.png')">В корзину</button>
+                </div>
+
+                <!-- Product 2: Худи белое с иероглифами -->
+                <div class="product-card" data-name="худи белое иероглиф ва япония 2399 hoodie">
+                    <div class="product-category">ХУДИ</div>
+                    <img src="17737370016cd9.png" alt="Худи" class="product-image">
+                    <div class="product-price">2399 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        100% ХЛОПОК<br>
+                        СВОБОДНЫЙ КРОЙ,<br>
+                        ОВЕРСАЙЗ,
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('худи белое иероглиф ва япония', 2399, 'ХУДИ', '/images/17737370016cd9.png')">В корзину</button>
+                </div>
+
+                <!-- Product 3: Худи светлое -->
+                <div class="product-card" data-name="худи светлое принт япония 3199 hoodie">
+                    <div class="product-category">ХУДИ</div>
+                    <img src="17737372361aed.png" alt="Худи" class="product-image">
+                    <div class="product-price">3199 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        100% ХЛОПОК<br>
+                        СВОБОДНЫЙ КРОЙ,<br>
+                        ОВЕРСАЙЗ,
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('ХУДИ белое и синие', 3199, 'ХУДИ', '/images/17737372361aed.png')">В корзину</button>
+                </div>
+
+                <!-- Product 4: Футболка Tokyo -->
+                <div class="product-card" data-name="футболка белая токио япония принт 2099 tshirt">
+                    <div class="product-category">ФУТБОЛКА</div>
+                    <img src="8ks0yapj646_580x0 1.png" alt="Футболка" class="product-image">
+                    <div class="product-price">2099 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        100% ХЛОПОК<br>
+                        СВОБОДНЫЙ КРОЙ,<br>
+                        ОВЕРСАЙЗ,
+                    </div>
+                   <button class="add-to-cart" onclick="addToCart('футболка белая токио япония принт', 2099, 'ФУТБОЛКА', '/images/8ks0yapj646_580x0 1.png')">В корзину</button>
+                </div>
+
+                <!-- Product 5: Джинсы черные с текстом -->
+                <div class="product-card" data-name="джинсы черные япония кавайи текст 4599 jeans">
+                    <div class="product-category">ДЖИНСЫ</div>
+                    <img src="Untitled.png" alt="Джинсы" class="product-image">
+                    <div class="product-price">4599 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        100% ХЛОПОК<br>
+                        ПЛОТНЫЙ ТКАНЬ,<br>
+                        ОВЕРСАЙЗ,
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('джинсы черные япония кавайи текст', 4599, 'ДЖИНСЫ', '/images/Untitled.png')">В корзину</button>
+                </div>
+
+                <!-- Product 6: Джинсы широкие -->
+                <div class="product-card" data-name="джинсы черные широкие япония принт 3999 jeans">
+                    <div class="product-category">ДЖИНСЫ</div>
+                    <img src="2586b1314d413f7f459b8e783a0381e2 1 222222222.png" alt="Джинсы" class="product-image">
+                    <div class="product-price">3999 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        100% ХЛОПОК<br>
+                        ПЛОТНЫЙ ТКАНЬ,<br>
+                        ОВЕРСАЙЗ,
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('джинсы черные широкие япония принт', 3999, 'ДЖИНСЫ', '/images/2586b1314d413f7f459b8e783a0381e2 1 222222222.png')">В корзину</button>
+                </div>
+
+                <!-- Product 7: Кроссовки Nike белые -->
+                <div class="product-card" data-name="кроссовки nike белые черные 4799 sneakers shoes">
+                    <div class="product-category">КРОССОВКИ</div>
+                    <img src="orig 1.png" alt="Кроссовки" class="product-image">
+                    <div class="product-price">4799 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        БЕЛАЯ КОЖА, ПРЕМИУМ КЛАССА<br>
+                        РУЧНАЯ РОСПИСЬ, ШЕСТИ
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('кроссовки nike белые черные', 4799, 'КРОССОВКИ', '/images/orig 1.png')">В корзину</button>
+                </div>
+
+                <!-- Product 8: Кроссовки с цветами -->
+                <div class="product-card" data-name="кроссовки белые цветы принт nike 2959 sneakers shoes">
+                    <div class="product-category">КРОССОВКИ</div>
+                    <img src="Untitled1.png" alt="Кроссовки" class="product-image">
+                    <div class="product-price">2959 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        БЕЛАЯ КОЖА, ПРЕМИУМ КЛАССА<br>
+                        РУЧНАЯ РОСПИСЬ, ШЕСТИ
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('кроссовки белые цветы принт nike', 2959, 'КРОССОВКИ', '/images/Untitled1.png')">В корзину</button>
+                </div>
+
+                <!-- Product 9: Кроссовки красные -->
+                <div class="product-card" data-name="кроссовки красные белые убийцы кровь 3666 sneakers shoes">
+                    <div class="product-category">КРОССОВКИ</div>
+                    <img src="Untitled777.png" alt="Кроссовки" class="product-image">
+                    <div class="product-price">3666 РУБ.</div>
+                    <div class="product-description">
+                        ОПИСАНИЕ:<br>
+                        БЕЛАЯ КОЖА, ПРЕМИУМ КЛАССА<br>
+                        РУЧНАЯ РОСПИСЬ, ШЕСТИ
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('кроссовки красные белые убийцы кровь', 3666, 'КРОССОВКИ', '/images/Untitled777.png')">В корзину</button>
+                </div>
+            </div>
+
+            <div class="no-results" id="noResults">
+                😕 Товары не найдены. Попробуйте другой запрос.
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ShopKir. Все права защищены. ⛩️</p>
+    </footer>
+
+    <!-- JavaScript for Search -->
+    <script>
+        function searchProducts() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toUpperCase();
+            let products = document.querySelectorAll('.product-card');
+            let noResults = document.getElementById('noResults');
+            let visibleProducts = 0;
+            
+            products.forEach(function(product) {
+                let productName = product.getAttribute('data-name');
+                let category = product.querySelector('.product-category');
+                let price = product.querySelector('.product-price');
+                
+                let searchText = (productName || '') + ' ' + 
+                                (category ? category.textContent : '') + ' ' + 
+                                (price ? price.textContent : '');
+                
+                if (searchText.toUpperCase().indexOf(filter) > -1) {
+                    product.classList.remove('hidden');
+                    visibleProducts++;
+                } else {
+                    product.classList.add('hidden');
+                }
+            });
+            
+            if (visibleProducts === 0 && filter.length > 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+    </script>
+
+<script>
+    function addToCart(name, price, category, image) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Проверяем есть ли уже такой товар
+        let existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                category: category,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Показываем уведомление
+        showNotification('✅ Товар добавлен в корзину!');
+        
+        // Обновляем счётчик в шапке
+        updateCartCount();
+    }
+
+    function showNotification(text) {
+        let notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-left: 5px solid #FF8C42;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = text;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        let cartTotal = document.querySelector('.cart-total');
+        if (cartTotal) {
+            cartTotal.textContent = total.toLocaleString() + 'Р';
+        }
+    }
+
+    // Обновляем при загрузке
+    updateCartCount();
+</script>
+</body>
+</html>

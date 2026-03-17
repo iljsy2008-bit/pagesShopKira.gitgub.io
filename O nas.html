@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - ShopKir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Header Styles - ТОЧНО КАК НА ГЛАВНОЙ */
+        header {
+            background-color: #fff;
+            border-bottom: 2px solid #FFE5D0;
+            padding: 20px 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .logo-torii {
+            font-size: 36px;
+        }
+
+        .logo-text {
+            color: #000;
+        }
+
+        .logo-text span {
+            color: #E67E22;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #E67E22;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #E67E22;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 350px;
+            margin: 0 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px;
+            border: 2px solid #FFE5D0;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        .search-box input:focus {
+            border-color: #E67E22;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .cart-icon {
+            font-size: 28px;
+        }
+        .cart img {
+            width: 24px;
+        }
+
+        .cart-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .cart-text {
+            font-size: 11px;
+            color: #E67E22;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .category-menu {
+            list-style: none;
+        }
+
+        .category-menu li {
+            margin-bottom: 20px;
+        }
+
+        .category-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .category-menu a:hover,
+        .category-menu a.active {
+            color: #E67E22;
+        }
+
+        /* About Content */
+        .about-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE5D0 100%);
+            padding: 60px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-section {
+            margin-bottom: 50px;
+        }
+
+        .about-section h2 {
+            font-size: 32px;
+            color: #000;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: #FFF5F0;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #FFE5D0;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #E67E22;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            background: #000;
+            color: #fff;
+            padding: 60px;
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            color: #E67E22;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 2px solid #FFE5D0;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #999;
+        }
+        header .cart-info .korz{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - ТОЧНО КАК НА ГЛАВНОЙ -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-torii">⛩️</span>
+                <span class="logo-text">SHOP<span>KIR</span></span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">КАТАЛОГ</a></li>
+                    <li><a href="O nas.html" class="active">О НАС</a></li>
+                    <li><a href="Oplata.html">ОПЛАТА</a></li>
+                    <li><a href="Kontakt.html">КОНТАКТЫ</a></li>
+                </ul>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск по каталогу">
+                </div>
+                
+                <div class="cart">
+                   <span class="cart-icon">🛒</span>
+                    <div class="cart-info">
+                        <span class="cart-total">0Р</span>
+                        <a class ='korz' href="korzina.html"><span class="cart-text">ОФОРМИТЬ ЗАКАЗ</span></a>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+        </aside>
+
+        <!-- About Content -->
+        <main class="about-content">
+            <div class="about-hero">
+                <h1>О НАШЕМ МАГАЗИНЕ</h1>
+                <p>ShopKir — это уникальный магазин японской одежды, где традиции встречаются с современным стилем</p>
+            </div>
+
+            <div class="about-section">
+                <h2>НАША ИСТОРИЯ</h2>
+                <p>Мы создали ShopKir с любовью к японской культуре и моде. Наша миссия — сделать authentic японский streetwear доступным для каждого, кто ценит качество и уникальный стиль.</p>
+                <p>Каждая вещь в нашем каталоге — это сочетание традиционных японских мотивов и современных трендов. Мы тщательно отбираем поставщиков и следим за качеством каждой детали.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎌</div>
+                    <h3>ЯПОНСКОЕ КАЧЕСТВО</h3>
+                    <p>100% хлопок, идеальные швы и долговечность</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>БЫСТРАЯ ДОСТАВКА</h3>
+                    <p>Отправляем в день заказа по всей России</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>УНИКАЛЬНЫЙ ДИЗАЙН</h3>
+                    <p>Эксклюзивные принты, которых нет больше нигде</p>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>Довольных клиентов</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Уникальных моделей</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Гарантия качества</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Поддержка</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ShopKir. Все права защищены. ⛩️</p>
+    </footer>
+<script>
+    function addToCart(name, price, category, image) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Проверяем есть ли уже такой товар
+        let existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                category: category,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Показываем уведомление
+        showNotification('✅ Товар добавлен в корзину!');
+        
+        // Обновляем счётчик в шапке
+        updateCartCount();
+    }
+
+    function showNotification(text) {
+        let notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-left: 5px solid #FF8C42;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = text;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        let cartTotal = document.querySelector('.cart-total');
+        if (cartTotal) {
+            cartTotal.textContent = total.toLocaleString() + 'Р';
+        }
+    }
+
+    // Обновляем при загрузке
+    updateCartCount();
+</script>
+</body>
+</html>

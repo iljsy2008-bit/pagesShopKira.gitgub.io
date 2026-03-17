@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - ShopKir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Header - ТОЧНО КАК НА ГЛАВНОЙ */
+        header {
+            background-color: #fff;
+            border-bottom: 3px solid #FF8C42;
+            padding: 20px 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .logo-torii {
+            font-size: 36px;
+        }
+
+        .logo-text {
+            color: #000;
+        }
+
+        .logo-text span {
+            color: #FF8C42;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FF8C42;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #FF8C42;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 350px;
+            margin: 0 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px;
+            border: 2px solid #FFDAB9;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        .search-box input:focus {
+            border-color: #FF8C42;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .cart-icon {
+            font-size: 28px;
+        }
+
+        .cart-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .cart-text {
+            font-size: 11px;
+            color: #FF8C42;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .category-menu {
+            list-style: none;
+        }
+
+        .category-menu li {
+            margin-bottom: 20px;
+        }
+
+        .category-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .category-menu a:hover,
+        .category-menu a.active {
+            color: #FF8C42;
+        }
+
+        /* Contacts Content */
+        .contacts-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .contacts-hero {
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE5D0 100%);
+            padding: 60px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            text-align: center;
+            border: 2px solid #FFDAB9;
+        }
+
+        .contacts-hero h1 {
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contacts-hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-card {
+            background: #FFF5F0;
+            border: 2px solid #FFDAB9;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: #FF8C42;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: #FF8C42;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .map-section {
+            background: #f5f5f5;
+            border: 2px solid #FFDAB9;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-size: 32px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #FFDAB9 0%, #FF8C42 100%);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .form-section {
+            background: #000;
+            color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            border: 2px solid #FF8C42;
+        }
+
+        .form-section h2 {
+            font-size: 32px;
+            color: #FFDAB9;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #FFDAB9;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 15px;
+            border: 2px solid #FFDAB9;
+            border-radius: 5px;
+            background: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #FF8C42;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: #FF8C42;
+            color: #fff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #FF6B2A;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 140, 66, 0.3);
+        }
+
+        .work-hours {
+            background: #FFF5F0;
+            border: 2px solid #FFDAB9;
+            border-radius: 10px;
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .work-hours h2 {
+            font-size: 28px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .work-hours p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 2px solid #FF8C42;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #999;
+        }
+        header .cart-info .korz{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - ТОЧНО КАК НА ГЛАВНОЙ -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-torii">⛩️</span>
+                <span class="logo-text">SHOP<span>KIR</span></span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">КАТАЛОГ</a></li>
+                    <li><a href="O nas.html">О НАС</a></li>
+                    <li><a href="Oplata.html">ОПЛАТА</a></li>
+                    <li><a href="Kontakt.html" class="active">КОНТАКТЫ</a></li>
+                </ul>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск по каталогу">
+                </div>
+                
+                <div class="cart">
+                    <span class="cart-icon">🛒</span>
+                    <div class="cart-info">
+                        <span class="cart-total">0Р</span>
+                        <a class ='korz' href="korzina.html"><span class="cart-text">ОФОРМИТЬ ЗАКАЗ</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+        </aside>
+
+        <!-- Contacts Content -->
+        <main class="contacts-content">
+            <div class="contacts-hero">
+                <h1>КОНТАКТЫ</h1>
+                <p>Свяжитесь с нами любым удобным способом. Мы всегда рады помочь вам с выбором и ответим на все вопросы</p>
+            </div>
+
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>АДРЕС</h3>
+                    <p>г. Москва, ул. Примерная, д. 10</p>
+                    <p>ТЦ "Япония", этаж 2</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>ТЕЛЕФОН</h3>
+                    <p><a href="tel:+79990000000">+7 (999) 000-00-00</a></p>
+                    <p>Ежедневно с 9:00 до 21:00</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>EMAIL</h3>
+                    <p><a href="mailto:info@shopkir.ru">info@shopkir.ru</a></p>
+                    <p>Ответ в течение 24 часов</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>МЕССЕНДЖЕРЫ</h3>
+                    <p><a href="#">Telegram</a> | <a href="#">WhatsApp</a></p>
+                    <p>Быстрый ответ онлайн</p>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <h2>МЫ НА КАРТЕ</h2>
+                <div class="map-placeholder">
+                    🗺️ Здесь будет интерактивная карта (Яндекс.Карты / Google Maps)
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>НАПИШИТЕ НАМ</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label>ВАШЕ ИМЯ</label>
+                        <input type="text" placeholder="Иван Иванов">
+                    </div>
+                    <div class="form-group">
+                        <label>ТЕЛЕФОН</label>
+                        <input type="tel" placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>EMAIL</label>
+                        <input type="email" placeholder="example@mail.ru">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>СООБЩЕНИЕ</label>
+                        <textarea placeholder="Ваш вопрос или сообщение..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">ОТПРАВИТЬ СООБЩЕНИЕ</button>
+                </form>
+            </div>
+
+            <div class="work-hours">
+                <h2>⏰ РЕЖИМ РАБОТЫ</h2>
+                <p><strong>Понедельник - Пятница:</strong> 9:00 - 21:00</p>
+                <p><strong>Суббота - Воскресенье:</strong> 10:00 - 20:00</p>
+                <p><strong>Поддержка онлайн:</strong> Круглосуточно</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ShopKir. Все права защищены. ⛩️</p>
+    </footer>
+<script>
+    function addToCart(name, price, category, image) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Проверяем есть ли уже такой товар
+        let existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                category: category,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Показываем уведомление
+        showNotification('✅ Товар добавлен в корзину!');
+        
+        // Обновляем счётчик в шапке
+        updateCartCount();
+    }
+
+    function showNotification(text) {
+        let notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-left: 5px solid #FF8C42;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = text;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        let cartTotal = document.querySelector('.cart-total');
+        if (cartTotal) {
+            cartTotal.textContent = total.toLocaleString() + 'Р';
+        }
+    }
+
+    // Обновляем при загрузке
+    updateCartCount();
+</script>
+</body>
+</html>
