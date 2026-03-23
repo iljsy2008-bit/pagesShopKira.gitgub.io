@@ -1,0 +1,578 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    border-bottom: 3px solid #FF8C42;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    flex-shrink: 0;
+}
+
+.logo-text span {
+    color: #FF8C42;
+}
+
+/* Burger Menu Button (скрыт на десктопе) */
+.burger-btn {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 101;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #FF8C42;
+}
+
+/* Search Box */
+.search-box {
+    flex: 1;
+    min-width: 200px;
+    max-width: 350px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid #FFDAB9;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    border-color: #FF8C42;
+}
+
+/* Cart */
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.cart-total {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cart-text {
+    font-size: 11px;
+    color: #FF8C42;
+    font-weight: 600;
+    text-decoration: none;
+    display: block;
+}
+
+.cart-text:hover {
+    color: #FF6B2A;
+}
+
+/* Main Content */
+.main-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    gap: 30px;
+}
+
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.category-menu {
+    list-style: none;
+}
+
+.category-menu li {
+    margin-bottom: 15px;
+}
+
+.category-menu a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+    display: block;
+    padding: 5px 0;
+}
+
+.category-menu a:hover {
+    color: #FF8C42;
+}
+
+/* Products Section */
+.products-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.sort-bar {
+    margin-bottom: 25px;
+    padding: 12px 20px;
+    background: #FFF5F0;
+    border-radius: 10px;
+    border: 2px solid #FFDAB9;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.sort-bar span {
+    font-weight: 600;
+    color: #000;
+}
+
+.sort-bar a {
+    color: #FF8C42;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.sort-bar a:hover {
+    text-decoration: underline;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* Product Card */
+.product-card {
+    background: #fff;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    border-color: #FF8C42;
+    box-shadow: 0 8px 25px rgba(255, 140, 66, 0.15);
+    transform: translateY(-3px);
+}
+
+.product-card.hidden {
+    display: none !important;
+}
+
+.product-category {
+    background: #FFF5F0;
+    border: 2px solid #FFDAB9;
+    border-radius: 25px;
+    padding: 6px 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #000;
+    display: inline-block;
+    font-size: 13px;
+    align-self: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.add-to-cart {
+    background: #FF8C42;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+    width: 100%;
+    min-height: 44px; /* Улучшение для тач-устройств */
+}
+
+.add-to-cart:hover {
+    background: #FF6B2A;
+    transform: translateY(-2px);
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 18px;
+    color: #666;
+    display: none;
+    grid-column: 1 / -1;
+}
+
+.no-results.show {
+    display: block;
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 25px 20px;
+    text-align: center;
+    margin-top: 60px;
+    border-top: 2px solid #FF8C42;
+    font-size: 14px;
+}
+
+/* Плавная прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Анимации уведомлений */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* ========================================
+📱 АДАПТИВНЫЙ ДИЗАЙН (MEDIA QUERIES)
+======================================== */
+
+/* Планшеты: до 1024px */
+@media (max-width: 1024px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    .search-box {
+        max-width: 280px;
+        order: 3;
+        width: 100%;
+    }
+    
+    .main-wrapper {
+        padding: 25px 15px;
+        gap: 25px;
+    }
+    
+    .sidebar {
+        width: 200px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    
+    .product-image {
+        height: 260px;
+    }
+}
+
+/* Мобильные: до 768px */
+@media (max-width: 768px) {
+    /* Header */
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        font-size: 22px;
+        justify-content: center;
+        order: 1;
+        width: 100%;
+    }
+    
+    .burger-btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+    
+    nav {
+        order: 4;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        text-align: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .nav-links.active {
+        max-height: 300px;
+    }
+    
+    .nav-links a {
+        font-size: 15px;
+        padding: 8px 0;
+    }
+    
+    .search-box {
+        order: 2;
+        max-width: 100%;
+        margin: 12px 0;
+    }
+    
+    .search-box input {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .cart {
+        order: 3;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    /* Main Content */
+    .main-wrapper {
+        flex-direction: column;
+        padding: 20px 15px;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .category-menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .category-menu li {
+        margin-bottom: 0;
+    }
+    
+    .category-menu a {
+        background: #FFF5F0;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+    
+    /* Products */
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+    
+    .product-card {
+        padding: 15px;
+    }
+    
+    .product-image {
+        height: 200px;
+    }
+    
+    .product-price {
+        font-size: 16px;
+    }
+    
+    .product-description {
+        font-size: 12px;
+    }
+    
+    .add-to-cart {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+/* Маленькие телефоны: до 480px */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    
+    .search-box input {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .cart-total {
+        font-size: 13px;
+    }
+    
+    .cart-text {
+        font-size: 10px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-image {
+        height: 220px;
+    }
+    
+    .sort-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    footer {
+        font-size: 13px;
+        padding: 20px 15px;
+    }
+}
+
+/* Улучшения для тач-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .product-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .add-to-cart:hover {
+        transform: none;
+    }
+    
+    .nav-links a,
+    .add-to-cart,
+    .category-menu a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Печать */
+@media print {
+    header, footer, .sort-bar, .add-to-cart {
+        display: none;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.header-container .cart .korz{
+    text-decoration: none;
+}
